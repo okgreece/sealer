@@ -57,7 +57,682 @@ module.exports.html = `<html><head><style type="text/css">@charset "UTF-8";[ng\:
   </div>
 </div><!-- end ngIf: !isLoading.application && !isLoading.package -->
 
+<script>
+window._babbage_results_aggregate  = {
+	"cells": [
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "401",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "401"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -56979.89
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 130000
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "4200",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "4200"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -40635.37
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 45000
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493925",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493925"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -567.82
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 21160.18
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "4203",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "4203"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": 0
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 20000
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493917",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493917"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -159.64
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 17924.43
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493920",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493920"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -94.8
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 17739.76
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "491",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "491"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": 0
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 15000
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "402",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "402"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -13830.53
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 15000
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493926",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493926"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -1660.61
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 12976.97
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "4140",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "4140"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -1480.57
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 12500
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "45",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "45"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -6260.15
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 12200
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493906",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493906"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -1726.61
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 12033.78
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493915",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493915"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -1025.61
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 10287.54
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493916",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493916"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -2770.95
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 10193.02
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "4120",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "4120"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -237.61
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 10000
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "4130",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "4130"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -3210.75
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 10000
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "49243",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "49243"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": 0
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 10000
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "49242",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "49242"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -1676.25
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 10000
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "49244",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "49244"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": 0
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 10000
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "49241",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "49241"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": 0
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 10000
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493935",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493935"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": 0
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 8090.26
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493950",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493950"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -4410.16
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 8042.95
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493908",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493908"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -932.47
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 7845.14
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493904",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493904"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -345.4
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 7770.89
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493939",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493939"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -1918.93
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 7723.77
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493913",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493913"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -886.03
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 7507.5
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493946",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493946"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -5416.54
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 7314.25
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493910",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493910"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -791.14
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 7117.05
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493943",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493943"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -1433.2
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 6549.57
+				}
+			]
+		},
+		{
+			"dimensions": [
+				{
+					"keyField": "budget_line_id_2.account_id",
+					"keyValue": "493934",
+					"nameField": "budget_line_id_2.account_id",
+					"nameValue": "493934"
+				}
+			],
+			"measures": [
+				{
+					"key": "Verausgabt.sum",
+					"name": "Verausgabt",
+					"value": -1156.83
+				},
+				{
+					"key": "Plan.sum",
+					"name": "Plan",
+					"value": 6171.88
+				}
+			]
+		}
+	],
+	"count": 89,
+	"currency": {
+		"Plan.sum": "EUR",
+		"Verausgabt.sum": "EUR"
+	},
+	"summary": {
+		"Plan.sum": 704843.13,
+		"Verausgabt.sum": -204608.77
+	}
+};
 
+</script>
 
 
 </body></html>`;

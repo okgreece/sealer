@@ -13,7 +13,7 @@ describe('Sealer', function () {
     let package_path = working_dir + '/' + 'package.zip';
     let signed_path = working_dir + '/' + 'test' + '.zip';
 
-    it('Should find SVG element', function (done) {
+    it('Should wait for data variables', function (done) {
         phantom.create()
             .then((instance) => instance.createPage())
             .then(function (page) {
@@ -39,6 +39,23 @@ describe('Sealer', function () {
                 });
             });
     }).timeout(10000);
+
+
+    it('Should store data variables', function (done) {
+        phantom.create()
+            .then((instance) => instance.createPage())
+            .then(function (page) {
+                page.property('content', bubbletree.html).then(function () {
+                    service.captureVariables(page, working_dir).then(function () {
+                        if(fs.existsSync(working_dir+'/facts.json') || fs.existsSync(working_dir+'/aggregate.json') )
+                        {
+                            done();
+                        }
+                    });
+                });
+            });
+    }).timeout(10000);
+
 
     it('Should compress existing images', function (done) {
         phantom.create()

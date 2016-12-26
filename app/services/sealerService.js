@@ -23,7 +23,7 @@ function waitUntil(asyncTest, timeOutMillis) {
     if (timeOutMillis) {
         maxtimeOutMillis = timeOutMillis;
     } else {
-        maxtimeOutMillis = 10000;
+        maxtimeOutMillis = config.get('timeout');
     } //< Default Max Timeout is 10s
 
     return new Promise(function (resolve, reject) {
@@ -47,7 +47,6 @@ function waitUntil(asyncTest, timeOutMillis) {
             } else {
                 //console.log('Timeout. Rejecting.');
                 reject();
-
             }
         }
 
@@ -55,49 +54,47 @@ function waitUntil(asyncTest, timeOutMillis) {
     });
 }
 
-module.exports.loadPage = function(url) {
+module.exports.loadPage = function (url) {
     let sitepage = null;
 
     return phantom.create()
         .then((instance) => instance.createPage())
         .then(function (page) {
             sitepage = page;
-           /* page.property('onConsoleMessage', function (msg) {
-                console.log(msg);
-            });*/
+            /* page.property('onConsoleMessage', function (msg) {
+             console.log(msg);
+             });*/
             return page.open(url);
         })
         .then(function () {
-           // console.log(status);
+            // console.log(status);
             return Promise.resolve(sitepage);
 
         });
 };
 
-module.exports.loadContent = function(page) {
+module.exports.loadContent = function (page) {
     return waitUntil(function () {
-        // Check in the page if a specific element is now visible
         return page.evaluate(function () {
             //noinspection JSUnresolvedFunction
-            return document.getElementsByTagName('svg').length > 0;
+            return window._babbage_results_aggregate !== undefined || window._babbage_results_facts !== undefined;
 
-        }, config.get('timeout'));
+        });
     })
+    /* .then(function () {
+     return page.evaluate(function () {
+     //noinspection JSUnresolvedFunction
+     //   console.log(document.getElementsByTagName('svg')[0].outerHTML);
+     });
+     })*/
         .then(function () {
-            return page.evaluate(function () {
-                //noinspection JSUnresolvedFunction
-             //   console.log(document.getElementsByTagName('svg')[0].outerHTML);
-            });
-        })
-        .then(function () {
-
             return page.property('content');
         }).then(function () {
             return Promise.resolve(page);
         });
 };
 
-module.exports.renderImages = function(page, outputDir) {
+module.exports.renderImages = function (page, outputDir) {
     mkdirp(outputDir);
     let pdfPath = outputDir + '/vector.pdf';
     let rasterPath = outputDir + '/raster.png';
@@ -114,13 +111,48 @@ module.exports.renderImages = function(page, outputDir) {
 
 
     return Promise.all([pdfRender, rasterRender, metaFile]).then(function () {
+        return Promise.resolve(page);
+    });
+
+
+};
+module.exports.captureVariables = function (page, outputDir) {
+    mkdirp(outputDir);
+    let factsPath = outputDir + '/facts.json';
+    let aggregatePath = outputDir + '/aggregate.json';
+    let factsDataPromise = page.evaluate(function () {
+        //noinspection JSUnresolvedFunction
+        return window._babbage_results_facts;
+    }).then(function (data) {
+        if (data !== null) {
+            return fsp.writeFile(factsPath, jsonFormat(data));
+        }
+        else {
+            return Promise.resolve(data);
+        }
+    });
+
+    let aggregatesDataPromise = page.evaluate(function () {
+        //noinspection JSUnresolvedFunction
+        return window._babbage_results_aggregate;
+
+    }).then(function (data) {
+        if (data !== null) {
+            return fsp.writeFile(aggregatePath, jsonFormat(data));
+        }
+        else {
+            return Promise.resolve(data);
+        }
+
+    });
+
+    return Promise.all([factsDataPromise, aggregatesDataPromise]).then(function () {
         return Promise.resolve(outputDir);
     });
 
 
 };
-
-module.exports.zipFiles = function(inputDir, outputFileName) {
+module.exports.zipFiles = function (inputDir, outputFileName) {
 
     let zip = new JSZip();
     mkdirp(path.dirname(outputFileName));
@@ -141,8 +173,6 @@ module.exports.zipFiles = function(inputDir, outputFileName) {
                 });
                 zip.file(path.basename(file), contentPromise);
             });
-
-
         })
         .then(function () {
             return zip
@@ -151,11 +181,9 @@ module.exports.zipFiles = function(inputDir, outputFileName) {
         .then(function (zipFile) {
             return fsp.writeFile(outputFileName, zipFile);
         });
-
-
 };
 
-module.exports.signFile = function(fileName, outputFileName) {
+module.exports.signFile = function (fileName, outputFileName) {
     return fsp.readFile(fileName)
         .then(function (contents) {
             const sign = crypto.createSign(config.get('crypto_algorithm'));
@@ -174,14 +202,10 @@ module.exports.signFile = function(fileName, outputFileName) {
                 .then(function (zipFile) {
                     return fsp.writeFile((outputFileName), zipFile);
                 });
-
-
         });
-
-
 };
 
-module.exports.verifySignedPackage = function(fileName) {
+module.exports.verifySignedPackage = function (fileName) {
 
     return fsp.readFile(fileName)
         .then(function (data) {
@@ -209,21 +233,20 @@ module.exports.verifySignedPackage = function(fileName) {
         });
 };
 
-module.exports.index = function(url) {
+module.exports.index = function (url) {
     let hash = md5(url + new Date());
     let base_dir = config.get('working_directory');
     let working_dir = base_dir + '/' + hash;
     let package_path = working_dir + '/' + 'package.zip';
     let signed_path = working_dir + '/' + hash + '.zip';
 
-
     let promise = this.loadPage(url)
         .then((page) => this.loadContent(page))
         .then((page) => this.renderImages(page, working_dir))
+        .then((page) => this.captureVariables(page, working_dir))
         .then((directoryPath) => this.zipFiles(directoryPath, package_path))
         .then(() => this.signFile(package_path, signed_path))
         .then(() => this.verifySignedPackage(signed_path));
-
 
     return promise.then(function () {
         return Promise.resolve(signed_path);
@@ -232,28 +255,26 @@ module.exports.index = function(url) {
 
 };
 
-module.exports.sign = function(url) {
+module.exports.sign = function (url) {
     let hash = md5(url + new Date());
     let base_dir = config.get('working_directory');
     let working_dir = base_dir + '/' + hash;
     let package_path = working_dir + '/' + 'package.zip';
     let signed_path = working_dir + '/' + hash + '.zip';
 
-
     let promise = this.loadPage(url)
         .then((page) => this.loadContent(page))
         .then((page) => this.renderImages(page, working_dir))
+        .then((page) => this.captureVariables(page, working_dir))
         .then((directoryPath) => this.zipFiles(directoryPath, package_path))
         .then(() => this.signFile(package_path, signed_path));
 
     return promise.then(function () {
         return Promise.resolve(signed_path);
     });
-
-
 };
 
 
-module.exports.verify = function(file) {
+module.exports.verify = function (file) {
     return this.verifySignedPackage(file);
 };
