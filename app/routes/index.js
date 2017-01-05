@@ -13,10 +13,15 @@ let storage = multer.diskStorage({
 
 let  upload = multer({ storage: storage });
 
-/* GET home page. */
 router.get('/sign', function (req, res) {
     mainController.sign(req, res);
 });
+
+
+router.get('/store', function (req, res) {
+    mainController.store(req, res);
+});
+
 
 router.post('/verify', upload.single('package'), function (req, res) {
     mainController.verify(req, res);

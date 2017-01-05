@@ -5,7 +5,15 @@
 let sealer = require('../../services/sealerService');
 
 exports.sign = function (req, res) {
-    sealer.sign(req.query.url).then(function (file) {
+    sealer.sign(req.query.url, req.query.width, req.query.height).then(function (file) {
+
+        res.download(file);
+    });
+
+};
+
+exports.store = function (req, res) {
+    sealer.store(req.query.url, req.query.width, req.query.height).then(function (file) {
 
         res.download(file);
     });

@@ -4,6 +4,7 @@ let bubbletree = require('./data/bubbletree');
 let phantom = require('phantom');
 let fs = require('fs');
 let config = require('config');
+let md5 = require('md5');
 
 describe('Sealer', function () {
 
@@ -12,6 +13,8 @@ describe('Sealer', function () {
     let working_dir = base_dir + '/' + 'test';
     let package_path = working_dir + '/' + 'package.zip';
     let signed_path = working_dir + '/' + 'test' + '.zip';
+    let hash = md5('test' + new Date());
+    let rasterPath = hash + '.png';
 
     it('Should wait for data variables', function (done) {
         phantom.create()
@@ -103,6 +106,21 @@ describe('Sealer', function () {
     }).timeout(10000);
 
 
+    it('Should capture raster image', function (done) {
+        phantom.create()
+            .then((instance) => instance.createPage())
+            .then(function (page) {
+                page.property('content', bubbletree.html).then(function () {
+
+                    service.renderPng(page, working_dir, rasterPath).then(function () {
+                        fs.stat(working_dir, function (err) {
+                            assert.equal(err, null);
+                            done();
+                        });
+                    });
+                });
+            });
+    }).timeout(10000);
 
 
 });

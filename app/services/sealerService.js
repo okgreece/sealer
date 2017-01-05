@@ -54,17 +54,21 @@ function waitUntil(asyncTest, timeOutMillis) {
     });
 }
 
-module.exports.loadPage = function (url) {
+module.exports.loadPage = function (url, width = 1920, height = 1080) {
     let sitepage = null;
 
     return phantom.create()
         .then((instance) => instance.createPage())
         .then(function (page) {
             sitepage = page;
+            return page.property('viewportSize', {width: width, height: height}).then(function() {
+                return page.open(url);
+
+            });
+
             /* page.property('onConsoleMessage', function (msg) {
              console.log(msg);
              });*/
-            return page.open(url);
         })
         .then(function () {
             // console.log(status);
@@ -92,6 +96,22 @@ module.exports.loadContent = function (page) {
         }).then(function () {
             return Promise.resolve(page);
         });
+};
+
+
+module.exports.renderPng = function (page, outputDir, rasterFileName) {
+    mkdirp(outputDir);
+    let rasterPath = outputDir + '/' + rasterFileName;
+
+    let rasterRender = page.render(rasterPath);
+
+
+
+    return rasterRender.then(function () {
+        return Promise.resolve(page);
+    });
+
+
 };
 
 module.exports.renderImages = function (page, outputDir) {
@@ -255,14 +275,14 @@ module.exports.index = function (url) {
 
 };
 
-module.exports.sign = function (url) {
+module.exports.sign = function (url, width = 1920, height = 1080) {
     let hash = md5(url + new Date());
     let base_dir = config.get('working_directory');
     let working_dir = base_dir + '/' + hash;
     let package_path = working_dir + '/' + 'package.zip';
     let signed_path = working_dir + '/' + hash + '.zip';
 
-    let promise = this.loadPage(url)
+    let promise = this.loadPage(url, width, height)
         .then((page) => this.loadContent(page))
         .then((page) => this.renderImages(page, working_dir))
         .then((page) => this.captureVariables(page, working_dir))
@@ -271,6 +291,23 @@ module.exports.sign = function (url) {
 
     return promise.then(function () {
         return Promise.resolve(signed_path);
+    });
+};
+
+
+module.exports.store = function (url, width = 1920, height = 1080) {
+    let hash = md5(url + new Date());
+    let base_dir = config.get('working_directory');
+    let working_dir = base_dir + '/' + hash;
+    let rasterFileName = hash + '.png';
+    let rasterPath = working_dir + '/' + rasterFileName;
+
+    let promise = this.loadPage(url, width, height)
+        .then((page) => this.loadContent(page))
+        .then((page) => this.renderPng(page, working_dir, rasterFileName));
+
+    return promise.then(function () {
+        return Promise.resolve(rasterPath);
     });
 };
 
