@@ -210,9 +210,8 @@ module.exports.signFile = function (fileName, outputFileName) {
 
             sign.update(contents);
 
-            const private_key = config.get('private_key');
+            const private_key = config.get('private_key').replace(/\\n/g, '\n');
             let signature = sign.sign(private_key).toString('hex');
-
             let zip2 = new JSZip();
             zip2.file('signature.sha256', signature);
 
@@ -246,7 +245,7 @@ module.exports.verifySignedPackage = function (fileName) {
             verify.write(contents);
             verify.end();
 
-            const public_key = config.get('public_key');
+            const public_key = config.get('public_key').replace(/\\n/g, '\n');
             let result = verify.verify(public_key, signature, 'hex');
             //console.log(result);
             return Promise.resolve(result);
